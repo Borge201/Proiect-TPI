@@ -16,7 +16,8 @@ public class Sala implements Serializable {
     public void connect() throws Exception, SQLException, ClassNotFoundException{
       try{
           Class.forName("com.mysql.cj.jdbc.Driver");
-          con=DriverManager.getConnection("jdbcmysql://localhost:3306/DB?useSSL=false","userlogare","parolalogare");//Introdu contul de test pt sql
+          con=DriverManager.getConnection("jdbc:mysql://localhost:3306/sali_sport", "root","1507");
+          //Introdu contul de test pt sql
           loginMail="";
           IDclient=-1;
           twoFact=-1;
@@ -50,7 +51,7 @@ public class Sala implements Serializable {
               // adauga un querry pt a verifica daca emailul nu exista si daca exista apare pe pagina JSP un
               //prompt ca EXISTA USER CU EMAILUL ALA DEJA
               stmt=con.createStatement(); 
-              stmt.executeUpdate("insert into Clineti(emailClienti,passClienti) values ("+ eMail+","+passW+");");
+              stmt.executeUpdate("insert into clienti(emailClienti, passClienti, twoFact, idPlanFit) values ("+ eMail +","+ passW +",-1,-1);");
              
             }
             catch (SQLException sqle){
@@ -70,7 +71,7 @@ public class Sala implements Serializable {
               //folosim un prepared sql statement
               Statement stmt;
               stmt=con.createStatement();
-              String querryString=("select idClineti,emailClienti,passClienti,twoFact from Clienti where emailClienti="+eMail+" and passClineti="+passW+";");
+              String querryString=("select idClienti,emailClienti,passClienti,twoFact from Clienti where emailClienti="+eMail+" and passClineti="+passW+";");
               rs=stmt.executeQuery(querryString);
               if(rs!=null){
               twoFact=rs.getInt("twoFact");

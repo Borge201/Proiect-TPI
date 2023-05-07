@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 03-May-2023, 17:09:53
+    Document   : usr_login
+    Created on : 03-May-2023, 13:18:43
     Author     : George
 --%>
 
@@ -14,15 +14,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-       
-        <hr>
-  <h1>Sign up user test </h1>
-  <p><a href="usr_sigup.jsp"><b>Sign up</b></a>
-    </p>
-</hr>
-<hr>
-    <h1>Log in user test </h1>
-  <p><a href="usr_login.jsp"><b>Log in</b></a>
-    </p>
+        <h2>Hello World!</h2>
     </body>
 </html>

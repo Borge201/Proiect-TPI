@@ -509,15 +509,18 @@ or ant -Dj2ee.platform.classpath=&lt;server_classpath&gt; (where no properties f
     </target>
     <target depends="init,compile,compile-jsps,-pre-dist,-do-dist-with-manifest,-do-dist-without-manifest" name="do-dist"/>
     <target depends="init" if="dist.ear.dir" name="library-inclusion-in-manifest">
+        <basename file="${file.reference.mysql-connector-j-8.0.33.jar}" property="included.lib.file.reference.mysql-connector-j-8.0.33.jar"/>
+        <copy-ear-war file="${file.reference.mysql-connector-j-8.0.33.jar}" propname="included.lib.file.reference.mysql-connector-j-8.0.33.jar.X"/>
         <basename file="${libs.MySQLDriver.classpath}" property="included.lib.libs.MySQLDriver.classpath"/>
         <copy-ear-war file="${libs.MySQLDriver.classpath}" propname="included.lib.libs.MySQLDriver.classpath.X"/>
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Class-Path" value="${included.lib.libs.MySQLDriver.classpath} "/>
+            <attribute name="Class-Path" value="${included.lib.file.reference.mysql-connector-j-8.0.33.jar} ${included.lib.libs.MySQLDriver.classpath} "/>
         </manifest>
         <delete dir="${dist.ear.dir}/temp"/>
     </target>
     <target depends="init" name="library-inclusion-in-archive" unless="dist.ear.dir">
+        <copy file="${file.reference.mysql-connector-j-8.0.33.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copy file="${libs.MySQLDriver.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
     </target>
     <target depends="init,compile,compile-jsps,-pre-dist,library-inclusion-in-manifest" name="do-ear-dist">
