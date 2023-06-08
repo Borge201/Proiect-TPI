@@ -1,8 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
-   
-<html lang="en">
+<html>
 <head>
     <title>Fitness Tracker - Nutrition</title>
     <meta charset="UTF-8">
@@ -16,8 +15,8 @@
             <ul>
                 <li><a href="index.jsp">Home</a></li>
                 <li><a href="PaginaWorkouts.jsp">Workouts</a></li>
-                <li class="active"><a href="PaginaNutrition.jsp">Nutrition</a></li>
                 <li><a href="PaginaProgress.jsp">Tracker</a></li>
+                <li class="active"><a href="PaginaNutrition.jsp">Nutrition</a></li>
             </ul>
         </nav>
     </header>
