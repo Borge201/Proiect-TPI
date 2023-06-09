@@ -1,12 +1,30 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page import="java.io.*" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+<%
+    int x=7;
+    String fName = "C:\\Users\\Mihai_i7\\Desktop\\SalaSport\\src\\java\\sala\\"+ x +".csv";
+    String thisLine;
+    List<String[]> workoutData = new ArrayList<String[]>();
+
+    try {
+        BufferedReader br = new BufferedReader(new FileReader(fName));
+        while ((thisLine = br.readLine()) != null) {
+            String[] rowData = thisLine.split(",");
+            workoutData.add(rowData);
+        }
+        br.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    request.setAttribute("workoutData", workoutData);
+%>
 
 <!DOCTYPE html>
 <html lang="en">
-    
 <head>
     <meta charset="UTF-8">
     <title>Workouts</title>
@@ -70,18 +88,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tbody>
-   <c:forEach var="data" items="${workoutData}">
-            <tr>
-                <td>${data[0]}</td>
-                <td>${data[1]}</td>
-                <td>${data[2]}</td>
-                <td>${data[3]}</td>
-                <td>${data[4]}</td>
-                <td>${data[5]}</td>
-            </tr>
-        </c:forEach>
-        </tbody>
+                <% for (String[] data : workoutData) { %>
+                    <tr>
+                        <td><%= data[0] %></td>
+                        <td><%= data[1] %></td>
+                        <td><%= data[2] %></td>
+                        <td><%= data[3] %></td>
+                        <td><%= data[4] %></td>
+                        <td><%= data[5] %></td>
+                    </tr>
+                <% } %>
             </tbody>
         </table>
     </main>
